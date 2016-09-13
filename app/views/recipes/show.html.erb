@@ -1,0 +1,97 @@
+
+<div class="row col-md-12">
+    <h1 class="text-center wight">Recipes
+  
+      <div class="pull-right">
+        <% if !current_chef.nil? %>
+            <%= link_to "New Recipe",
+                    new_recipe_path,
+                    :class => 'btn btn-xs btn-primary' %>
+        <% end %>
+      </div>
+    </h1>
+</div>
+<%= link_to "< Back to recipes",
+              recipes_path, :class => 'btn btn-default'  %>
+<% if current_chef && current_chef.id == @recipe.chef_id %>
+    <%= link_to "Edit",
+                  edit_recipe_path(@recipe), :class => 'btn btn-success' %>
+    <%= link_to "Delete",
+                  recipe_path(@recipe),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger' %>
+<% end %>
+<br /><br />
+  <div class="panel panel-wall panel-default">
+      <div class="panel-heading">
+        <%= @recipe.title %>
+        &nbsp;
+        <%= link_to like_recipe_path(@recipe, :like => true),method: :post do %>
+          <i class="fa fa-thumbs-o-up"></i>&nbsp; <%= @recipe.thumbs_up_total %>
+        <% end %>&nbsp;
+        <%= link_to like_recipe_path(@recipe, :like => false),method: :post do %>
+          <i class="fa fa-thumbs-o-down"></i>&nbsp; <%= @recipe.thumbs_down_total %>
+        <% end %>
+        <div class="pull-right">
+             
+        </div>
+      </div>
+        <div class="row panel-bodying">
+          <div class="col-md-9 col-md-offset-1">
+            
+            <br />
+            <h5>SUMMARY:</h5>
+            <div class="well well-sm">
+              <%= @recipe.summary %>  
+            </div>
+            <div class="well well-sm col-md-12 ">
+              <%= image_tag(@recipe.picture.url, :class => "img img-responsive pull-center") if @recipe.picture? %>
+            </div>
+            <h6>DESCRIPTION:</h6>
+            <div class="well well-sm">
+               
+               <%= @recipe.description %>
+            </div>
+            <br />
+          </div>
+          <br/>
+          <div class="col-md-2 text-danger text-center">
+            <%= link_to  chef_path(@recipe.chef) do %>
+              <%=  gravatar_for(@recipe.chef, size: 120) %>
+              <p>
+                <%= "#{@recipe.chef.frist_name} #{@recipe.chef.last_name}" %>
+              </p>
+            <% end %>
+          </div>
+          <div class="col-md-12">
+            <hr />
+            <h3 class="col-md-offset-0" style="margin-left: 10px;">Comments</h3>
+            <div class="col-md-offset-0">
+                <br/>
+                <%= render 'comments/show' %>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+      
+  </div>
+
+
+<%= link_to "< Back to recipes",
+              recipes_path, :class => 'btn btn-default'  %>
+              
+<% if current_chef && current_chef.id == @recipe.chef_id %>
+    <%= link_to "Edit",
+                  edit_recipe_path(@recipe), :class => 'btn btn-success' %>
+    <%= link_to "Delete",
+                  recipe_path(@recipe),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger' %>
+<% end %>
+
+<br />
+<br />

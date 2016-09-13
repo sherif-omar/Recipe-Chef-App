@@ -1,3 +1,51 @@
 
 
+body { padding-bottom: 70px; }
+
+.no-padding-left {
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.no-padding-right {
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+.wight{
+    color: #FFF;
+}
+
+a:hover{
+    background-color: #333;
+    color: #CCC;
+}
+
+.pull-center {
+    margin: 0 auto;
+}
+
+
+body{
+    margin: 0px;
+    padding-bottom: 0px;
+    background-image: asset-url("12.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #FFF;
+}
+
+.navbar{
+    margin-bottom: 0px;
+}
+#cover{
+    position: static;
+}
+#signup {
+    
+    position: static;
+    margin-right: 170px;
+    margin-top: 290px;
+    width: 200px;
+}
 

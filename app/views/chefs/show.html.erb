@@ -1,0 +1,52 @@
+
+
+<div class="container">
+    <div class="row profile">
+		<div class="col-lg-3 text-center">
+            <div class="thumbnail bootsnipp-thumb">
+    	    	<p class="pull-right view-counts hidden-md"></p>
+    	    	<p class="lead snipp-title">
+    	    	    <%= gravatar_for(@chef,option: {:size => 150}) %>
+    	    	</p>
+                <%= "#{@chef.frist_name} #{@chef.last_name}" %>
+                <p><%= "#{@chef.email}" %></p>
+            	<div class="caption">
+            	  <%if current_chef && current_chef.id == @chef.id %>
+            	     <%= link_to "Edit", edit_chef_registration_path, class: "btn btn-success btn-sm" %>
+			             <%= link_to "Delete", chef_registration_path, class: "btn btn-danger btn-sm", 
+			                            method: :delete, 
+			                                    data: {confirm: "Are you Sure to Delete your account? "} %>
+			          <% end %>
+            	</div>
+            </div>
+        </div>
+		<div class="col-md-9">
+            <div class="thumbnail bootsnipp-thumb">
+			   <h3 class="text-center"><%= "#{@chef.frist_name.capitalize} #{@chef.last_name.capitalize}" %> Recipes</h3>
+			   <hr />
+			   <% Recipe.all.where(chef_id: @chef).each do |recipe| %>
+			       <div class="thumbnail bootsnipp-thumb">
+    			       <div class="media">
+                          <div class="col-md-1">
+                            <% if !recipe.picture? %>
+                              <%= image_tag("1.jpg", class: "img-circle",:width => 64, :lenght => 64) %>
+                            <% else %>
+                              <%= image_tag(recipe.picture, class: "img-circle",:width => 64, :lenght => 64) %>
+                            <% end %>
+                          </div>
+                          <div class="col-md-11">
+                            <h4 class="media-heading"><%= recipe.title %></h4>
+                            <%= truncate(recipe.summary, :lenght => 200) %><br />
+                            <%= truncate(recipe.description, :lenght => 500) %>
+                            <%= link_to "Ready more ...", recipe_path(recipe), class: "btn btn-xs btn-primary" %>
+                          </div>
+                        </div>
+                    </div>
+			   <% end %>
+            </div>
+		</div>
+	</div>
+</div>
+
+<br>
+<br>

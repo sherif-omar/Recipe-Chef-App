@@ -1,8 +1,25 @@
 Rails.application.routes.draw do
-  devise_for :chefs
+  
+  
+  #resources :categories
   root 'pages#index'
-  get 'about', to: 'pages#about'
-
+  resources :recipes do
+    resources :comments
+    
+    member do
+      post 'like'
+    end
+  end
+  
+  devise_for :chefs, :controllers => { :chefs => 'chefs' } do
+    get "chefs", to: "chefs#index"
+    get "chefs/:id", to: "chefs#show"
+  end
+  resources :chefs, only: [:index,:show]
+  
+  get 'contact', :to => 'pages#contactus'
+  get 'about', :to => 'pages#about'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -38,8 +55,7 @@ Rails.application.routes.draw do
 
   # Example resource route with more complex sub-resources:
   #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  #     #     resources :sales do
   #       get 'recent', on: :collection
   #     end
   #   end

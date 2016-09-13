@@ -1,0 +1,32 @@
+
+<% @comments.each do |comment| %>
+<div class="panel panel-wall col-md-12">
+    <p class="col-md-2 text-center alert alert-defualt">
+        <%= gravatar_for(comment.chef,size: 60) %><br/>
+        <%= "#{comment.chef.frist_name} #{comment.chef.last_name}" %>
+    </p>
+    <div class="col-md-10 well alert-success">
+        <div class="col-md-12">
+            <%= comment.content %><br />
+            
+        </div>
+        
+        <div class="pull-right">
+            <div class=" well-sm alert alert-info pull-right">
+                <%= time_ago_in_words(comment.created_at) %>
+            </div>
+             
+            <%if current_chef && current_chef.id == comment.chef_id %>
+                <br />
+                <%= link_to "Edit", edit_recipe_comment_path(comment.recipe,comment), :class => "btn btn-success btn-xs" %>
+                <%= link_to "Delete", [comment.recipe,comment ], method: :delete, :class => "btn btn-danger btn-xs" %>
+            <% end %>
+        </div>
+    </div>
+</div>
+    
+    
+<% end %>
+<div class="col-md-offset-2">
+    <%= render 'comments/form' %>
+</div>
