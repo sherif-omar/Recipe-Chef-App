@@ -16,11 +16,13 @@
     
     <table class="table">
       <tr class="panel panel-bodying">
-          <td class="col-md-10"><%= @recipe.title %></td>
-          <td class="col-md-2"></td>
+          <td class="col-md-12">
+            <%= render 'recipes/recipes' %> 
+            <span class="col-md-offset-5"><%= will_paginate @category_recipes %></span>
+          </td>
+          
       </tr>
     </table>
 </div>
-
 <%= link_to "< Back to categories",
                   categories_path, :class => 'btn btn-default'  %>

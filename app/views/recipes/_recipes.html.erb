@@ -13,8 +13,7 @@
     </h1>
 </div>
 <div class="clearfix"></div>
-<% @recipes.each do |recipe| %>
-
+<% @category_recipes.each do |recipe| %>
   <div class="panel panel-wall panel-default">
       <div class="panel-heading">
         <%= link_to "#{recipe.title}", recipe_path(recipe) %>
@@ -63,7 +62,7 @@
           </div>
           <br/>
           <div class="col-md-2 text-danger text-center">
-            <%= link_to  chef_path(recipe) do %>
+            <%= link_to  chef_path(recipe.chef_id) do %>
               <%=  gravatar_for(recipe.chef, size: 120) %>
               <p>
                 <%= "#{recipe.chef.frist_name} #{recipe.chef.last_name}" %>

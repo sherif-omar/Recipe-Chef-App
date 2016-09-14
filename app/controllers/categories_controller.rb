@@ -4,13 +4,13 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    @categories = Category.paginate(page: params[:page], per_page: 2)
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
-    
+    @category_recipes = @category.recipes.paginate(page: params[:page], per_page: 3)
   end
 
   # GET /categories/new

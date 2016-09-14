@@ -1,5 +1,5 @@
 class ChefsController < ApplicationController
-    before_action :find,only: [:edit,:show]
+    before_action :find, only: [:edit,:show]
     def edit
     end
     

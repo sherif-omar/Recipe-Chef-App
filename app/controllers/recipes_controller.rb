@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /recipes/1
@@ -87,6 +87,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:title, :summary, :description, :picture)
+      params.require(:recipe).permit(:title, :summary, :description, :picture, category_ids: [])
     end
 end
