@@ -57,7 +57,7 @@
               <li></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <%= "<i class='glyphicon glyphicon-user'></i> #{current_chef.email}".html_safe %> <span class="caret"></span>
+                  <%= "<i class='glyphicon glyphicon-user'></i> #{current_chef.frist_name} #{current_chef.last_name}".html_safe %> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "<i class='glyphicon glyphicon-pencil' aria-hidden='true'></i> Edit Profile".html_safe, edit_chef_registration_path %></li>

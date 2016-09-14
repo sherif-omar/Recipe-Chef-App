@@ -11,6 +11,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160914020444) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "chefs", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "frist_name"
+    t.string   "last_name"
+  end
+
+  add_index "chefs", ["confirmation_token"], name: "index_chefs_on_confirmation_token", unique: true
+  add_index "chefs", ["email"], name: "index_chefs_on_email", unique: true
+  add_index "chefs", ["reset_password_token"], name: "index_chefs_on_reset_password_token", unique: true
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "recipe_id"
+    t.integer  "chef_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["chef_id"], name: "index_comments_on_chef_id"
+  add_index "comments", ["recipe_id"], name: "index_comments_on_recipe_id"
+
+  create_table "likes", force: :cascade do |t|
+    t.boolean  "like"
+    t.integer  "recipe_id"
+    t.integer  "chef_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recipe_categories", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.integer "category_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string   "title"
+    t.string   "summary"
+    t.text     "description"
+    t.string   "picture"
+    t.integer  "chef_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
 end

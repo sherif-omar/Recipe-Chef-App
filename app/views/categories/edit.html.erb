@@ -1,0 +1,13 @@
+<%= render 'categories/errors'%>
+    <div class="panel panel-info">    
+        <div class="panel panel-heading">
+          <h1 class="text-center">New Category</h1>
+        </div>
+        <div class="row">
+            <div class="panel-bodying">
+                <%= render :partial => 'form' %>
+            </div>
+        </div>
+    </div>
+    <%= link_to "< Back to category",
+                  category_path(@category), :class => 'btn btn-default' %>

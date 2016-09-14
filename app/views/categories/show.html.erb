@@ -1,0 +1,26 @@
+<div class="panel panel-info">
+    <div class=" panel-heading">
+      <h3 class="">
+          Category: <%= @category.name %>
+          <div class="pull-right">
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                  edit_category_path(@category), :class => 'btn btn-default btn-xs' %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                  category_path(@category),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger btn-xs' %>
+          </div>
+      </h3>
+    </div>
+    
+    <table class="table">
+      <tr class="panel panel-bodying">
+          <td class="col-md-10"><%= @recipe.title %></td>
+          <td class="col-md-2"></td>
+      </tr>
+    </table>
+</div>
+
+<%= link_to "< Back to categories",
+                  categories_path, :class => 'btn btn-default'  %>
